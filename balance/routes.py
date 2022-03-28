@@ -4,9 +4,8 @@ from balance.models import ValorCriptoMonedas
 
 @app.route("/")
 def inicio():
-    consulta = ValorCriptoMonedas("EUR","BTC")
     
-    return consulta.obtener_tasa()
+    return render_template("movimientos.html",movimientos = '')
 
 
 @app.route("/purchase")

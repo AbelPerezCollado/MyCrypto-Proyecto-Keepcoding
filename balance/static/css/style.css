@@ -1,0 +1,52 @@
+:root {
+    --primary: #1095c1;
+    --color-primario: #1095c1;
+    --color-secundario: #f7dba7;
+    --negro: #2c363f; 
+    --blanco: #fafafa;
+    --separacion-defecto: 8px;
+    
+}
+
+header, footer {
+    padding: calc(2 * var(--separacion-defecto));
+    font-size: 24px;
+    background-color: var(--color-primario);
+    color: var(--negro);
+    margin-top: var(--separacion-defecto);
+    height: 150px;
+}
+footer {
+    width: calc(100% - 50px); 
+    position:fixed;
+    bottom: var(--separacion-defecto);
+}
+.error-msgs {
+    border: 1px solid red;
+    background-color: #f7dba7;
+    padding: calc(2 * var(--separacion-defecto));
+    background-color: var(--color-secundario)
+    
+}
+
+.error-msgs li {
+    border: 1px solid red;
+    background-color: #f7dba7;
+    padding: calc(2 * var(--separacion-defecto));
+    background-color: var(--color-secundario)
+    
+}
+
+.boton {
+    text-align: right;
+}
+
+nav {
+    color:#1095c1
+}
+
+div.movimiento {
+    text-align: center;
+}
+
+

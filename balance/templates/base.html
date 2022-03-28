@@ -1,0 +1,46 @@
+<html data-theme = 'dark'lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/pico.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pico.css') }}">
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>MyCRYPTO | {% block titulo %} {% endblock %}</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            MyCRYPTO
+        </div>
+    </header>
+    <nav class="container">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Compra</a></li>
+            <li><a href="#">Status</a></li>
+        </ul>
+    </nav>
+    
+    <section class="container">
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+            <div class="error-msgs">
+                <ul>
+                    {% for mensaje in messages %}
+                    <li>{{ mensaje }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+                {% endif %}
+            {% endwith %}
+        {% block contenido %} {% endblock %}
+    </section>
+
+    <footer>
+        <div class="container">
+            © 2022. Todos los derechos reservados
+        </div>
+    </footer>
+</body>
+</html>
