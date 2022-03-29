@@ -1,5 +1,6 @@
+import sqlite3
 import requests
-from config import API_KEY, HEADERS, URL_CONSULTA
+from config import API_KEY, HEADERS, RUTA_BBDD, URL_CONSULTA
 from errors import APIError
 
 class ValorCriptoMonedas():
@@ -18,3 +19,17 @@ class ValorCriptoMonedas():
         #self.tasa = round(self.respuesta.json()["rate"], 2)
 
         return self.respuesta.json()
+
+
+class ConsultasSql():
+
+    def select_movimientos(self):
+        con = sqlite3.connect(RUTA_BBDD)
+        cur = con.cursor()
+        cur.execute("""
+                    SELECT *
+                    FROM movimientos
+                    ORDER BY date
+        
+        """)
+        return cur.fetchall()

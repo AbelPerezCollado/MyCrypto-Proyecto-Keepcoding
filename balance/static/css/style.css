@@ -25,15 +25,19 @@ footer {
     border: 1px solid red;
     background-color: #f7dba7;
     padding: calc(2 * var(--separacion-defecto));
-    background-color: var(--color-secundario)
+    background-color: var(--color-secundario);
+    
+    
     
 }
 
 .error-msgs li {
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     background-color: #f7dba7;
     padding: calc(2 * var(--separacion-defecto));
-    background-color: var(--color-secundario)
+    background-color: var(--color-secundario);
+    color: red;
+    
     
 }
 
@@ -45,6 +49,10 @@ nav {
     color:#1095c1
 }
 
+div.movimientos-cabecera {
+    text-align: center;
+}
+
 div.movimiento {
     text-align: center;
 }
@@ -53,5 +61,10 @@ div.movimiento {
 .disabled-link {
     pointer-events: none;
     text-decoration: underline;
+}
+
+div.container {
+    display: flex;
+    justify-content: space-between;
 }
 
