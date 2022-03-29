@@ -5,14 +5,15 @@ from balance.models import ValorCriptoMonedas
 @app.route("/")
 def inicio():
     
-    return render_template("movimientos.html",movimientos = '')
+    return render_template("movimientos.html",clase_inicio = "disabled-link",movimientos = '')
+    
 
 
-@app.route("/purchase")
+@app.route("/compra")
 def purchase():
-    return "Muestro formulario en el que realizar compra,venta o intercambio de monedas"
+    return render_template("base.html",clase_compra = "disabled-link" )
 
 
-@app.route("/status")
+@app.route("/estado")
 def status():
-    return "Muestro estado de la inversión, euros gastados en comprar BTC y el valor actual del total de criptomonedas que existan en el stock del usuario según sus movimientos"
+    return render_template("base.html",clase_estado = "disabled-link")

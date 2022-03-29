@@ -50,3 +50,8 @@ div.movimiento {
 }
 
 
+.disabled-link {
+    pointer-events: none;
+    text-decoration: underline;
+}
+
