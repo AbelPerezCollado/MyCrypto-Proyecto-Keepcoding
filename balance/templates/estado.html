@@ -1,0 +1,32 @@
+{% extends "base.html" %} 
+
+{% block titulo %} Estado de la inversión {% endblock %}
+
+{% block contenido%}
+    <div class="compra-cabecera">
+        <h1> ESTADO DE LA INVERSIÓN</h1>
+    </div>    
+
+    <form action="" method="post">
+        {{formulario.hidden_tag()}}
+        <div class="grid">
+            {{formulario.invertido.label()}}
+            {{formulario.invertido()}}    
+        </div>
+
+        <div class="grid">
+            {{formulario.valor_actual.label()}}
+            {{formulario.valor_actual()}}    
+            
+        </div>
+
+        
+        
+        <div class="boton-volver">
+            
+            <a href="#" role="button">Volver</a>
+                       
+        </div>
+
+    </form>
+{% endblock %}    

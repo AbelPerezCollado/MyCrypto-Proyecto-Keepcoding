@@ -52,7 +52,9 @@ nav {
 div.movimientos-cabecera {
     text-align: center;
 }
-
+div.compra-cabecera {
+    text-align: center;
+}
 div.movimiento {
     text-align: center;
 }
@@ -68,3 +70,7 @@ div.container {
     justify-content: space-between;
 }
 
+
+div.boton-volver {
+    text-align: right;
+}

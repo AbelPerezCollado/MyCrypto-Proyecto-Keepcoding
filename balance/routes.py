@@ -2,6 +2,7 @@ import sqlite3
 from flask import redirect, render_template, flash,request
 from balance import app
 from balance.models import ConsultasSql, ValorCriptoMonedas
+from formularios import ComprasForm, EstadoForm
 
 @app.route("/")
 def inicio():
@@ -21,9 +22,11 @@ def inicio():
 
 @app.route("/compra")
 def purchase():
-    return render_template("base.html",clase_compra = "disabled-link" )
+    form = ComprasForm()
+    return render_template("compra.html",clase_compra = "disabled-link",formulario = form )
 
 
 @app.route("/estado")
 def status():
-    return render_template("base.html",clase_estado = "disabled-link")
+    form = EstadoForm()
+    return render_template("estado.html",clase_estado = "disabled-link",formulario = form)

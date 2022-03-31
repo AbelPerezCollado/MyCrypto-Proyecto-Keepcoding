@@ -1,0 +1,43 @@
+{% extends "base.html" %} 
+
+{% block titulo %} Compra de criptomonedas {% endblock %}
+
+{% block contenido%}
+    <div class="compra-cabecera">
+        <h1> COMPRA DE CRIPTOMONEDAS</h1>
+    </div>    
+
+    <form action="" method="post">
+        {{formulario.hidden_tag()}}
+        <div class="grid">
+            {{formulario.moneda_from.label()}}
+            {{formulario.moneda_from()}}
+            {{formulario.moneda_to.label()}}
+            {{formulario.moneda_to()}}
+        </div>
+
+        <div class="grid">
+            {{formulario.cantidad_from.label()}}
+            {{formulario.cantidad_from()}}
+            <div class="boton-calcular">
+            <a href="#" role="button" class="outline">Calc</a>
+            </div>
+            {{formulario.cantidad_to.label()}}
+            {{formulario.cantidad_to()}}
+        </div>
+
+        <div class="grid">
+            {{formulario.pu.label()}}
+            {{formulario.pu()}}
+        </div>
+        
+        
+        
+        <div class="grid">
+            <a href="/" role="button" class="secondary">Cancelar</a>
+            {{formulario.comprar()}}
+            
+        </div>
+
+    </form>
+{% endblock %}    
