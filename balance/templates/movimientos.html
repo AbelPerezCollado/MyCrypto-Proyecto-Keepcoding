@@ -26,8 +26,8 @@
             <td>{{movimiento[3]}}</td>
             <td>{{movimiento[4]}}</td>
             <td>{{movimiento[5]}}</td>
-            <td>{{movimiento[6]}}</td>
-            <td>Calculo cosas aquí</td>
+            <td>{{"{:,.5f}".format(movimiento[6])}}</td>
+            <td>{{"{:,.2f}".format(movimiento[4]/movimiento[6])}}</td>
             
         </tr>
         {% endfor %}

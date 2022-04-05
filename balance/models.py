@@ -2,6 +2,10 @@ import sqlite3
 import requests
 from config import API_KEY, HEADERS, RUTA_BBDD, URL_CONSULTA
 from errors import APIError
+from datetime import datetime
+
+now = datetime.now()
+
 
 class ValorCriptoMonedas():
     def __init__(self,origen="",destino="") -> None:
@@ -49,9 +53,16 @@ class ConsultasSql():
         """)
         return cur.fetchall()
 
-    def insert_compra(self):
+    def insert_compra(self,params):
         con = sqlite3.connect(RUTA_BBDD)
         cur = con.cursor()
-        
+        sql_query = "INSERT INTO movimientos (date,time,moneda_from,cantidad_from,moneda_to,cantidad_to) VALUES(?,?,?,?,?,?)"
+        con.execute(sql_query,params)
         con.commit()
-        con.close()        
+        con.close()
+
+    def fecha_actual(self):
+        return str(now.date())
+
+    def hora_actual(self):
+        return str(now.time())                        

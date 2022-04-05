@@ -4,7 +4,7 @@ from balance import app
 from balance.models import ConsultasSql, ValorCriptoMonedas
 from formularios import ComprasForm, EstadoForm
 
-
+db = ConsultasSql()
 
 @app.route("/")
 def inicio():
@@ -36,7 +36,7 @@ def compra():
                 
                 llamada_api = ValorCriptoMonedas(form.moneda_from.data,form.moneda_to.data)
                 cantidad_convertida = llamada_api.obtener_cantidad_to(form.cantidad_from.data)
-                pu = float(form.cantidad_from.data) / cantidad_convertida #No se si es mejor que lo procese models
+                pu = float(form.cantidad_from.data) / cantidad_convertida
                 form.cantidad_convertida.data = cantidad_convertida
                 form.cantidad_convertida._value = cantidad_convertida
                 form.pu.data = pu
@@ -44,16 +44,20 @@ def compra():
                 return render_template("compra.html",clase_compra = "disabled-link",formulario = form,
                                         cantidad_convertida = round(cantidad_convertida,2), pu = round(pu,2)  )
             elif form.comprar.data:
-                #1.recupero todos los campos
+                
                 llamada_api = ValorCriptoMonedas(form.moneda_from.data,form.moneda_to.data)
                 form.cantidad_convertida.data = llamada_api.obtener_cantidad_to(form.cantidad_from.data)
                 pu = float(form.cantidad_from.data) / form.cantidad_convertida.data 
-                lista_datos = (str(form.fecha),str(form.hora),form.moneda_from.data,form.cantidad_from.data,
-                               form.moneda_to.data,form.cantidad_convertida.data)
-                print(lista_datos)                               
-                #2.Hago el insert
-                db = ConsultasSql()
-                pass                
+                lista_datos = (db.fecha_actual(),db.hora_actual(),form.moneda_from.data,form.cantidad_from.data,
+                               form.moneda_to.data,form.cantidad_convertida.data)                               
+                try:
+                    db.insert_compra(lista_datos)
+                    return redirect("/")
+                except sqlite3.Error as e:
+                    flash("Error al modificar la BBDD, inténtelo más tarde")
+                    return render_template("compra.html",clase_compra = "disabled-link",formulario = form,
+                                        cantidad_convertida = round(form.cantidad_convertida.data,2), pu = round(pu,2))                        
+                                
         else:
             
             return render_template("compra.html",clase_compra = "disabled-link",formulario = form)            
@@ -66,21 +70,7 @@ def status():
     return render_template("estado.html",clase_estado = "disabled-link",formulario = form)
 
 
-@app.route("/api",methods=["GET","POST"]) 
-def consultaApi():
-    
-    form = ComprasForm()
-    
 
-    '''
-    llamada_api = ValorCriptoMonedas(form.moneda_from.data,form.moneda_to.data)
-    print(llamada_api.obtener_cantidad_to(form.cantidad_from.data))
-    form.cantidad_to.data = llamada_api.obtener_cantidad_to(form.cantidad_from.data)
-    '''
-    cantidad_prueba = 127.50
-    
-    form.cantidad_to = cantidad_prueba
-    return redirect("/compra")
     
     
 
