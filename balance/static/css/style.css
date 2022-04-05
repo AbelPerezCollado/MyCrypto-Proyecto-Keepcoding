@@ -18,7 +18,7 @@ header, footer {
 }
 footer {
     width: calc(100% - 50px); 
-    position:fixed;
+    
     bottom: var(--separacion-defecto);
 }
 .error-msgs {
@@ -40,6 +40,8 @@ footer {
     
     
 }
+
+
 
 .boton {
     text-align: right;
@@ -73,4 +75,10 @@ div.container {
 
 div.boton-volver {
     text-align: right;
+}
+
+p.error {
+    color:red;
+    margin-left: 364px;
+    margin-top: -15px;
 }
