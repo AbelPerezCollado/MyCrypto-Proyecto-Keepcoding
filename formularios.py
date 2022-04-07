@@ -1,8 +1,7 @@
 from curses.ascii import isdigit
 from datetime import datetime
-from email import message
 from flask_wtf import FlaskForm
-from wtforms   import DateTimeField,StringField,SelectField,FloatField,SubmitField,DateField,TimeField
+from wtforms   import DateTimeField,StringField,SelectField,FloatField,SubmitField,DateField,TimeField,HiddenField
 from wtforms.validators import DataRequired,Length,NumberRange,InputRequired,ValidationError
 from wtforms.widgets import Select
 from datetime import datetime
@@ -24,20 +23,22 @@ def validar_moneda(form,field):
                    
 
 class ComprasForm(FlaskForm):
-    moneda_from = SelectField('De', choices= MONEDAS, validators=[DataRequired()])
-    moneda_to = SelectField('A', choices= MONEDAS,validators=[DataRequired(),validar_moneda])
+    moneda_from = SelectField('De', choices= MONEDAS, validators=[DataRequired()],widget=Select())
+    moneda_to = SelectField('A', choices= MONEDAS,validators=[DataRequired(),validar_moneda],widget=Select())
     
-    cantidad_from = FloatField("Cantidad",validators=[DataRequired(),validar_cantidad_from,
+    cantidad_from = FloatField("Cantidad",validators=[DataRequired(message="Aquí mensaje error"),validar_cantidad_from,
                     NumberRange(min=0.00001,max = 99999999,message = "La cantidad debe ser un número positivo")])
                     
     cantidad_convertida =  FloatField()
+
+    cantidad_to_h = HiddenField()
     pu = FloatField()          
 
     fecha = now.date()
     hora = now.time()
 
     
-    calcular = SubmitField("CALCULAR")
+    calcular = SubmitField("")
     comprar = SubmitField("Comprar")
 
 

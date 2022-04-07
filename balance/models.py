@@ -6,6 +6,13 @@ from datetime import datetime
 
 now = datetime.now()
 
+def convertir_en_dict(self,param):
+    clave= []
+    valor = []
+    for lista in param:
+        clave.append(lista[0])
+        valor.append(lista[1])
+        return dict(zip(clave,valor))
 
 class ValorCriptoMonedas():
     def __init__(self,origen="",destino="") -> None:
@@ -37,7 +44,9 @@ class ValorCriptoMonedas():
     def obtener_cantidad_to(self,cantidad_from):
         return self.obtener_tasa() * cantidad_from        
         
-        
+    
+
+
 
 
 class ConsultasSql():
@@ -51,6 +60,8 @@ class ConsultasSql():
                     ORDER BY date
         
         """)
+        con.commit()
+        
         return cur.fetchall()
 
     def insert_compra(self,params):
@@ -59,10 +70,68 @@ class ConsultasSql():
         sql_query = "INSERT INTO movimientos (date,time,moneda_from,cantidad_from,moneda_to,cantidad_to) VALUES(?,?,?,?,?,?)"
         con.execute(sql_query,params)
         con.commit()
-        con.close()
+        
 
     def fecha_actual(self):
         return str(now.date())
 
     def hora_actual(self):
-        return str(now.time())                        
+        return str(now.time())
+
+    def total_euros_invertidos(self):
+        con = sqlite3.connect(RUTA_BBDD)
+        cur = con.cursor()
+        cur.execute("""
+                    SELECT SUM(cantidad_from)
+                    FROM movimientos
+                    WHERE moneda_from ='EUR'
+        
+        """)
+        con.commit()
+                                               
+        return cur.fetchone()
+
+    def saldo_euros_invertidos(self):
+        con = sqlite3.connect(RUTA_BBDD)
+        cur = con.cursor()
+        cur.execute("""
+                    SELECT ifnull(SUM(cantidad_from),0)
+                    FROM movimientos
+                    WHERE moneda_from ='EUR' 
+
+                    UNION
+                    SELECT ifnull(SUM(cantidad_to),0)
+                    FROM movimientos
+                    WHERE moneda_to ='EUR' 
+        
+        """)
+        con.commit()        
+        return cur.fetchall()
+
+
+    def criptos_to(self):
+        con = sqlite3.connect(RUTA_BBDD)
+        cur = con.cursor()
+        cur.execute("""
+                    SELECT moneda_to,sum(cantidad_to)
+                    FROM movimientos
+                    WHERE movimientos.moneda_to !='EUR'
+                    GROUP BY moneda_to
+                    HAVING count() >=1 
+                    """)
+        con.commit() 
+        return cur.fetchall()
+
+
+    def criptos_from(self):
+        con = sqlite3.connect(RUTA_BBDD)
+        cur = con.cursor()
+        cur.execute("""
+                    SELECT moneda_from,sum(cantidad_from)
+                    FROM movimientos
+                    WHERE movimientos.moneda_from !='EUR'
+                    GROUP BY moneda_from
+                    HAVING count() >=1 
+                    """)
+        con.commit()
+        return cur.fetchall()

@@ -11,7 +11,7 @@
         {{formulario.hidden_tag()}}
         <div class="grid">
             {{formulario.moneda_from.label()}}
-            {{formulario.moneda_from()}}
+            {{formulario.moneda_from()}}                
             {{formulario.moneda_to.label()}}
             {{formulario.moneda_to()}}
         </div>
@@ -36,15 +36,14 @@
             
             <div class="boton-calcular">
             
-            {{formulario.calcular()}}                
-               
-           
+            {{formulario.calcular()}}
             
-
-            
+        
             </div>
+            
             <p> Cantidad convertida </p>
             <p class="cantidad_convertida">{{cantidad_convertida}}</p>
+        
         </div>
         {% if formulario.cantidad_from.errors %}
                 {% for error in formulario.cantidad_from.errors %}
@@ -53,9 +52,16 @@
             {% endif %}    
 
         <div class="grid">
-            <p> PU</p>
-            <p class="PU">{{pu}}</p>
+            <div class="bloque-pu">
+                <p class="pu_label" > PU</p>
+                <p class="PU">{{pu}}</p>
+            </div>
         </div>
+
+        <label for="Precio unitario">
+            Precio Unitario
+            <input type="text" id="precio_unitario" name="precio_unitario" placeholder="Precio unitario" value = '{{pu}}' readonly>
+          </label>
 
         
         

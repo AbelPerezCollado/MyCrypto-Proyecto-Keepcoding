@@ -77,8 +77,30 @@ div.boton-volver {
     text-align: right;
 }
 
+div.boton-calcular {
+    width: 95px;
+}
+
+input#calcular{
+    background-image: url('../css/img/calc.png') ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+
 p.error {
     color:red;
     margin-left: 364px;
     margin-top: -15px;
 }
+
+label {
+    text-align: center;
+}
+
+p.pu_label {
+    text-align: center;
+}
+
