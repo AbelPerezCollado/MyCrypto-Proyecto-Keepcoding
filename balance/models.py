@@ -6,13 +6,22 @@ from datetime import datetime
 
 now = datetime.now()
 
-def convertir_en_dict(self,param):
+def convertir_en_dict(param):
     clave= []
     valor = []
     for lista in param:
         clave.append(lista[0])
         valor.append(lista[1])
-        return dict(zip(clave,valor))
+    return dict(zip(clave,valor))
+
+def obtienevalor_criptos_actual(dict1,dict2):
+    criptos_actual = {}
+    for key in dict1:
+        if key in dict2:
+            criptos_actual[key] = dict1[key] - dict2[key]
+        else:
+            criptos_actual[key] = dict1[key]
+    return criptos_actual            
 
 class ValorCriptoMonedas():
     def __init__(self,origen="",destino="") -> None:

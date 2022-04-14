@@ -2,7 +2,7 @@ import sqlite3
 from tkinter import DISABLED
 from flask import redirect, render_template, flash,request, url_for
 from balance import app
-from balance.models import ConsultasSql, ValorCriptoMonedas, convertir_en_dict
+from balance.models import ConsultasSql, ValorCriptoMonedas, convertir_en_dict, obtienevalor_criptos_actual
 from errors import APIError
 from formularios import ComprasForm, EstadoForm
 
@@ -94,10 +94,10 @@ def estado():
 
 
     #Calculo las criptos compradas
-    criptos_to = db.criptos_to()
-    criptos_from = db.criptos_from()
-    dic_to = convertir_en_dict(criptos_to)
-    dic_from = convertir_en_dict(criptos_from)  
+    dict_criptos_to = convertir_en_dict(db.criptos_to())
+    dict_criptos_from = convertir_en_dict(db.criptos_from())
+    cantidad_actual_cripto = obtienevalor_criptos_actual(dict_criptos_to,dict_criptos_from)
+    
 
 
     
