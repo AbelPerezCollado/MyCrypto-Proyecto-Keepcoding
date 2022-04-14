@@ -2,7 +2,7 @@ import sqlite3
 from tkinter import DISABLED
 from flask import redirect, render_template, flash,request, url_for
 from balance import app
-from balance.models import ConsultasSql, ValorCriptoMonedas, convertir_en_dict, obtienevalor_criptos_actual
+from balance.models import ConsultasSql, ValorCriptoMonedas, convertir_en_dict, obtiene_euros_decriptos, obtienevalor_criptos_actual
 from errors import APIError
 from formularios import ComprasForm, EstadoForm
 
@@ -79,31 +79,19 @@ def compra():
 @app.route("/estado")
 def estado():
     form = EstadoForm()
-    #Calculo el total de Euros que he gastado en criptos
+    
     total_euros_invertidos = db.total_euros_invertidos()
-    if total_euros_invertidos:
-        form.invertido.data = total_euros_invertidos[0]
-
-
-    #Saldo de euros invertidos
-    lista_mov_euro = db.saldo_euros_invertidos()
-    if lista_mov_euro and len(lista_mov_euro) == 2:
-        saldo_euros_invertidos = lista_mov_euro[0][0] - lista_mov_euro[1][0]
-        print(saldo_euros_invertidos)
-
-
-
-    #Calculo las criptos compradas
+    form.invertido.data = total_euros_invertidos
+    
+    saldo_euros_invertidos = db.saldo_euros_invertidos()
+        
     dict_criptos_to = convertir_en_dict(db.criptos_to())
     dict_criptos_from = convertir_en_dict(db.criptos_from())
     cantidad_actual_cripto = obtienevalor_criptos_actual(dict_criptos_to,dict_criptos_from)
-    
+    valor_euros_decriptos = obtiene_euros_decriptos(cantidad_actual_cripto)
 
 
-    
-
-    
-
+    form.valor_actual.data = total_euros_invertidos + saldo_euros_invertidos + valor_euros_decriptos
 
     return render_template("estado.html",clase_estado = "disabled-link",formulario = form)
 

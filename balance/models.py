@@ -6,6 +6,7 @@ from datetime import datetime
 
 now = datetime.now()
 
+
 def convertir_en_dict(param):
     clave= []
     valor = []
@@ -21,7 +22,17 @@ def obtienevalor_criptos_actual(dict1,dict2):
             criptos_actual[key] = dict1[key] - dict2[key]
         else:
             criptos_actual[key] = dict1[key]
-    return criptos_actual            
+    return criptos_actual
+
+def obtiene_euros_decriptos(dict):
+    total = 0
+    for key in dict:
+        vc = ValorCriptoMonedas(origen = key ,destino = 'EUR')
+        total += vc.obtener_cantidad_to(dict[key])
+
+    return total
+
+
 
 class ValorCriptoMonedas():
     def __init__(self,origen="",destino="") -> None:
@@ -97,8 +108,13 @@ class ConsultasSql():
         
         """)
         con.commit()
+        lista = cur.fetchone()
+        if lista:
+            return lista[0]
+        else:
+            return 0                
                                                
-        return cur.fetchone()
+        
 
     def saldo_euros_invertidos(self):
         con = sqlite3.connect(RUTA_BBDD)
@@ -114,8 +130,12 @@ class ConsultasSql():
                     WHERE moneda_to ='EUR' 
         
         """)
-        con.commit()        
-        return cur.fetchall()
+        con.commit()
+        lista = cur.fetchall()
+        if lista and len(lista) == 2:
+            return lista[0][0] - lista[1][0]        
+        else:
+            return 0
 
 
     def criptos_to(self):
