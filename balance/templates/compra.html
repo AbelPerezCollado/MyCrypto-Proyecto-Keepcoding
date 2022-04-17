@@ -11,57 +11,68 @@
         {{formulario.hidden_tag()}}
         <div class="grid">
             {{formulario.moneda_from.label()}}
-            {{formulario.moneda_from()}}                
-            {{formulario.moneda_to.label()}}
-            {{formulario.moneda_to()}}
-        </div>
+            {{formulario.moneda_from()}}
             {% if formulario.moneda_from.errors %}
                 {% for error in formulario.moneda_from.errors %}
                     <p class = "error">{{error}}</p>
                 {% endfor %}
             {% endif %} 
+            
 
-
-
+            {{formulario.moneda_to.label()}}
+            {{formulario.moneda_to()}}
             {% if formulario.moneda_to.errors %}
                 {% for error in formulario.moneda_to.errors %}
                     <p class = "error">{{error}}</p>
                 {% endfor %}
-            {% endif %}    
+            {% endif %}
+        </div>
+               
 
         <div class="grid">
             
                 {{formulario.cantidad_from.label()}}
                 {{formulario.cantidad_from()}}
-            
-            <div class="boton-calcular">
-            
-            {{formulario.calcular()}}
-            
-        
-            </div>
-            
-            <p> Cantidad convertida </p>
-            <p class="cantidad_convertida">{{cantidad_convertida}}</p>
-        
-        </div>
-        {% if formulario.cantidad_from.errors %}
+                {% if formulario.cantidad_from.errors %}
                 {% for error in formulario.cantidad_from.errors %}
                     <p class = "error">{{error}}</p>
                 {% endfor %}
-            {% endif %}    
+            {% endif %}
 
-        <div class="grid">
-            <div class="bloque-pu">
-                <p class="pu_label" > PU</p>
-                <p class="PU">{{pu}}</p>
+                        
+            
+            <div class="boton-calcular">
+            
+                {{formulario.calcular()}}
+            
             </div>
+                {{formulario.cantidad_convertida.label()}}
+                {% if formulario.cantidad_convertida.data  %}
+                    {{formulario.cantidad_convertida.data}}
+                {% else %}                    
+                    0.0
+                {% endif %}
+                {{formulario.cantidad_convertida_h()}}
+            
+            
         </div>
 
-        <label for="Precio unitario">
-            Precio Unitario
-            <input type="text" id="precio_unitario" name="precio_unitario" placeholder="Precio unitario" value = '{{pu}}' readonly>
-          </label>
+        <div class="grid">
+                {{formulario.pu.label()}}
+                {% if formulario.pu.data  %}
+                    {{formulario.pu.data}}
+                {% else %}                    
+                    0.0
+                {% endif %}
+                
+                
+                {{formulario.pu_h()}}
+        </div>
+
+       
+        
+
+        
 
         
         

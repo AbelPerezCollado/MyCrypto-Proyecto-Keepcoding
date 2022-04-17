@@ -2,7 +2,7 @@ import sqlite3
 from tkinter import DISABLED
 from flask import redirect, render_template, flash,request, url_for
 from balance import app
-from balance.models import ConsultasSql, ValorCriptoMonedas, convertir_en_dict, obtiene_euros_decriptos, obtienevalor_criptos_actual
+from balance.models import ConsultasSql, ValorCriptoMonedas, convertir_en_dict, obtiene_euros_decriptos, obtienevalor_criptos_actual, puedo_comprar_esta_moneda
 from errors import APIError
 from formularios import ComprasForm, EstadoForm
 
@@ -26,9 +26,8 @@ def inicio():
 
 @app.route("/compra",methods= ["GET","POST"])
 def compra():
-    form = ComprasForm(request.form)
-    
-    
+    form = ComprasForm()
+
      
     if request.method == "GET":
         
@@ -41,25 +40,30 @@ def compra():
                 
                 llamada_api = ValorCriptoMonedas(form.moneda_from.data,form.moneda_to.data)
                 try:
+                    #Validar que hay suficientes monedas de cantidad origen
+                    todas_las_monedas_compradas =convertir_en_dict(db.criptos_to())
+                    if not puedo_comprar_esta_moneda(form.moneda_from.data,form.cantidad_from.data,todas_las_monedas_compradas):
+                        flash(f"No tienes suficientes {form.moneda_from.data}.")
+                        return render_template("compra.html",clase_compra = "disabled-link",formulario = form) 
+
                     cantidad_convertida = llamada_api.obtener_cantidad_to(form.cantidad_from.data)
-                    pu = float(form.cantidad_from.data) / cantidad_convertida
                     form.cantidad_convertida.data = cantidad_convertida
-                    form.cantidad_convertida._value = cantidad_convertida
+                    form.cantidad_convertida_h.data = cantidad_convertida
+                    pu = float(form.cantidad_from.data) / cantidad_convertida
                     form.pu.data = pu
-                    form.pu._value = pu
-                    form.moneda_from.render_kw={'disabled':True}
+                    form.pu_h.data = pu
                     
-                    return render_template("compra.html",clase_compra = "disabled-link",formulario = form,
-                                            cantidad_convertida = round(cantidad_convertida,2), pu = round(pu,2)  )
+                    
+                    
+                    return render_template("compra.html",clase_compra = "disabled-link",formulario = form)
                 except APIError:
                     flash("Mostrar aquí error de APIERROR")
                     return render_template("compra.html",clase_compra = "disabled-link",formulario = form )
 
             elif form.comprar.data:
                 
-                llamada_api = ValorCriptoMonedas(form.moneda_from.data,form.moneda_to.data)
-                form.cantidad_convertida.data = llamada_api.obtener_cantidad_to(form.cantidad_from.data)
-                pu = float(form.cantidad_from.data) / form.cantidad_convertida.data 
+                
+                form.cantidad_convertida.data = form.cantidad_convertida_h.data 
                 lista_datos = (db.fecha_actual(),db.hora_actual(),form.moneda_from.data,form.cantidad_from.data,
                                form.moneda_to.data,form.cantidad_convertida.data)                               
                 try:

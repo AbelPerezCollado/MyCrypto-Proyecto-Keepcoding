@@ -32,6 +32,12 @@ def obtiene_euros_decriptos(dict):
 
     return total
 
+def puedo_comprar_esta_moneda(moneda,cantidad,dic):
+    if moneda in dic:
+        if cantidad <= dic[moneda]:
+            return True
+        else:
+            return False            
 
 
 class ValorCriptoMonedas():
@@ -164,3 +170,6 @@ class ConsultasSql():
                     """)
         con.commit()
         return cur.fetchall()
+
+
+            

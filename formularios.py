@@ -2,7 +2,7 @@ from curses.ascii import isdigit
 from datetime import datetime
 from flask_wtf import FlaskForm
 from wtforms   import DateTimeField,StringField,SelectField,FloatField,SubmitField,DateField,TimeField,HiddenField
-from wtforms.validators import DataRequired,Length,NumberRange,InputRequired,ValidationError
+from wtforms.validators import DataRequired,Length,NumberRange,InputRequired,ValidationError,StopValidation
 from wtforms.widgets import Select
 from datetime import datetime
 
@@ -29,16 +29,17 @@ class ComprasForm(FlaskForm):
     cantidad_from = FloatField("Cantidad",validators=[DataRequired(message="Aquí mensaje error"),validar_cantidad_from,
                     NumberRange(min=0.00001,max = 99999999,message = "La cantidad debe ser un número positivo")])
                     
-    cantidad_convertida =  FloatField()
+    cantidad_convertida =  FloatField("Cantidad")
+    cantidad_convertida_h = HiddenField("cantidad convertida H")
 
-    cantidad_to_h = HiddenField()
-    pu = FloatField()          
+    pu = FloatField("Precio Unitario")
+    pu_h = HiddenField("Precio Unitario H")          
 
     fecha = now.date()
     hora = now.time()
 
     
-    calcular = SubmitField("")
+    calcular = SubmitField(" ")
     comprar = SubmitField("Comprar")
 
 
