@@ -40,7 +40,7 @@ def compra():
                 
                 llamada_api = ValorCriptoMonedas(form.moneda_from.data,form.moneda_to.data)
                 try:
-                    #Validar que hay suficientes monedas de cantidad origen
+                    
                     todas_las_monedas_compradas =convertir_en_dict(db.criptos_to())
                     if not puedo_comprar_esta_moneda(form.moneda_from.data,form.cantidad_from.data,todas_las_monedas_compradas):
                         flash(f"No tienes suficientes {form.moneda_from.data}.")
@@ -56,8 +56,8 @@ def compra():
                     
                     
                     return render_template("compra.html",clase_compra = "disabled-link",formulario = form)
-                except APIError:
-                    flash("Mostrar aquí error de APIERROR")
+                except APIError as err:
+                    flash(err)
                     return render_template("compra.html",clase_compra = "disabled-link",formulario = form )
 
             elif form.comprar.data:

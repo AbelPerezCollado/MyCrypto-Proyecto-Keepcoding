@@ -33,12 +33,13 @@ def obtiene_euros_decriptos(dict):
     return total
 
 def puedo_comprar_esta_moneda(moneda,cantidad,dic):
-    if moneda in dic:
+    if moneda in dic and moneda != 'EUR':
         if cantidad <= dic[moneda]:
             return True
         else:
             return False            
-
+    else:
+        return True
 
 class ValorCriptoMonedas():
     def __init__(self,origen="",destino="") -> None:
@@ -60,10 +61,10 @@ class ValorCriptoMonedas():
             raise APIError("Has excedido el número de consultas para tu API KEY. Pónganse en contacto en www.coinapi.io.")
 
         elif self.respuesta.status_code == 550:
-            raise APIError("No hay información para la consulta realizada. Inténtelo más tarde.")                                   
+            raise APIError("No hay información para la consulta realizada. Inténtelo más tarde.")
+
+                                                       
             
-        elif self.respuesta.status_code != 200:
-            raise APIError(self.respuesta.json()["error"])
         self.tasa = self.respuesta.json()["rate"]
         return self.tasa
 
