@@ -23,8 +23,11 @@ def validar_moneda(form,field):
                    
 
 class ComprasForm(FlaskForm):
+    
     moneda_from = SelectField('De', choices= MONEDAS, validators=[DataRequired()],widget=Select())
+    moneda_from_h = HiddenField()
     moneda_to = SelectField('A', choices= MONEDAS,validators=[DataRequired(),validar_moneda],widget=Select())
+    moneda_to_h = HiddenField()
     
     cantidad_from = FloatField("Cantidad",validators=[DataRequired(message="Aquí mensaje error"),validar_cantidad_from,
                     NumberRange(min=0.00001,max = 99999999,message = "La cantidad debe ser un número positivo")])

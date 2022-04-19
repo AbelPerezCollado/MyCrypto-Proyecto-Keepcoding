@@ -70,8 +70,21 @@ div.movimiento {
 div.container {
     display: flex;
     justify-content: space-between;
+    
+}
+div.container_pu {
+display: flex;
+
+
+}
+div.pu {
+    color: #1095c1;
 }
 
+div.cantidad_convertida {
+    color: #1095c1;
+    text-align: right;
+}
 
 div.boton-volver {
     text-align: right;

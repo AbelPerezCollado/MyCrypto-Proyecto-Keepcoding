@@ -12,6 +12,7 @@
         <div class="grid">
             {{formulario.moneda_from.label()}}
             {{formulario.moneda_from()}}
+            {{formulario.moneda_from_h()}}
             {% if formulario.moneda_from.errors %}
                 {% for error in formulario.moneda_from.errors %}
                     <p class = "error">{{error}}</p>
@@ -21,6 +22,7 @@
 
             {{formulario.moneda_to.label()}}
             {{formulario.moneda_to()}}
+            {{formulario.moneda_to_h()}}
             {% if formulario.moneda_to.errors %}
                 {% for error in formulario.moneda_to.errors %}
                     <p class = "error">{{error}}</p>
@@ -47,24 +49,28 @@
             
             </div>
                 {{formulario.cantidad_convertida.label()}}
-                {% if formulario.cantidad_convertida.data  %}
-                    {{formulario.cantidad_convertida.data}}
-                {% else %}                    
-                    0.0
-                {% endif %}
-                {{formulario.cantidad_convertida_h()}}
-            
+                <div class="cantidad_convertida">
+                    {% if formulario.cantidad_convertida.data  %}
+                        {{formulario.cantidad_convertida.data}}
+                    {% else %}                    
+                        0.0
+                    {% endif %}
+                    {{formulario.cantidad_convertida_h()}}
+                </div>                    
             
         </div>
 
-        <div class="grid">
-                {{formulario.pu.label()}}
-                {% if formulario.pu.data  %}
-                    {{formulario.pu.data}}
-                {% else %}                    
-                    0.0
-                {% endif %}
-                
+        <div class="container_pu">
+                <div class="pu_label">
+                    {{formulario.pu.label()}}
+                </div>
+                <div class="pu">
+                    {% if formulario.pu.data  %}
+                        {{formulario.pu.data}}
+                    {% else %}                    
+                        0.0
+                    {% endif %}
+                </div>
                 
                 {{formulario.pu_h()}}
         </div>
