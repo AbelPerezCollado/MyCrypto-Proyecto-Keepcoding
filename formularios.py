@@ -43,7 +43,7 @@ class ComprasForm(FlaskForm):
 
     
     calcular = SubmitField(" ")
-    comprar = SubmitField("Comprar")
+    comprar = SubmitField(" ")
 
 
 

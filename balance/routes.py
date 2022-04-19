@@ -30,7 +30,7 @@ def compra():
 
      
     if request.method == "GET":
-        
+        form.comprar.render_kw = {'disabled': True}
         return render_template("compra.html",clase_compra = "disabled-link",formulario = form )
 
     elif request.method == "POST":

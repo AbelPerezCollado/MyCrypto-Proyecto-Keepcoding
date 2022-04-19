@@ -32,9 +32,12 @@
                
 
         <div class="grid">
-            
-                {{formulario.cantidad_from.label()}}
-                {{formulario.cantidad_from()}}
+                <div class="cantidad-from-label">
+                    {{formulario.cantidad_from.label()}}
+                </div>
+                <div class="cantidad-from">
+                    {{formulario.cantidad_from()}}
+                </div>
                 {% if formulario.cantidad_from.errors %}
                 {% for error in formulario.cantidad_from.errors %}
                     <p class = "error">{{error}}</p>
@@ -43,13 +46,15 @@
 
                         
             
-            <div class="boton-calcular">
-            
-                {{formulario.calcular()}}
-            
-            </div>
-                {{formulario.cantidad_convertida.label()}}
-                <div class="cantidad_convertida">
+                <div class="boton-calcular">
+                
+                    {{formulario.calcular()}}
+                
+                </div>
+                <div class="cantidad-convertida-label">
+                    {{formulario.cantidad_convertida.label()}}
+                </div>
+                <div class="cantidad-convertida">
                     {% if formulario.cantidad_convertida.data  %}
                         {{formulario.cantidad_convertida.data}}
                     {% else %}                    
@@ -60,7 +65,7 @@
             
         </div>
 
-        <div class="container_pu">
+        <div class="container-pu">
                 <div class="pu_label">
                     {{formulario.pu.label()}}
                 </div>
@@ -83,9 +88,12 @@
         
         
         
-        <div class="grid">
+        <div class="boton-cancelar-comprar">
             <a href="/" role="button" class="secondary">Cancelar</a>
-            {{formulario.comprar()}}
+            <div class="boton-comprar">
+                {{formulario.comprar()}}
+            </div>
+            
             
         </div>
 

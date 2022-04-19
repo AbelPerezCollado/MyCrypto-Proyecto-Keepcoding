@@ -67,23 +67,43 @@ div.movimiento {
     text-decoration: underline;
 }
 
+
+
 div.container {
     display: flex;
     justify-content: space-between;
     
 }
-div.container_pu {
+.container-pu {
 display: flex;
+justify-content: end;
+gap: 15px;
+height: 90px;
 
 
 }
-div.pu {
+.pu {
     color: #1095c1;
+    border: 1px solid #1095c1;
+    border-radius: 5px;
+    height: 60px;
+    width: 215px;
+    text-align: center;
+    padding: 10px;
 }
 
-div.cantidad_convertida {
+.cantidad-convertida {
     color: #1095c1;
-    text-align: right;
+    text-align: center;
+    border: 1px solid #1095c1;
+    height: 60px;
+    border-radius: 5px;
+    padding: 10px;
+    
+    
+    
+    
+
 }
 
 div.boton-volver {
@@ -116,4 +136,30 @@ label {
 p.pu_label {
     text-align: center;
 }
+
+
+.boton-cancelar-comprar {
+    display:flex;
+    text-align: right;
+    height: 60px;
+    justify-content: end;
+    gap: 10px;
+}
+
+input#comprar {
+    height: 60px;
+    width: 115px;
+    background-image: url('../css/img/buy.png') ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+
+a.secondary {
+    height: 60px;
+}
+
+
+
 
