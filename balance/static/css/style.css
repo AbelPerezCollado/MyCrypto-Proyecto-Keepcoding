@@ -18,7 +18,7 @@ header, footer {
 }
 footer {
     width: calc(100% - 50px); 
-    
+    font-size: small;
     bottom: var(--separacion-defecto);
 }
 .error-msgs {
@@ -32,7 +32,6 @@ footer {
 }
 
 .error-msgs li {
-    /*border: 1px solid red;*/
     background-color: #f7dba7;
     padding: calc(2 * var(--separacion-defecto));
     background-color: var(--color-secundario);
@@ -67,7 +66,11 @@ div.movimiento {
     text-decoration: underline;
 }
 
-
+.cantidad-from-error {
+    color: red;
+    display: flex;
+    margin-left:200px;
+}
 
 div.container {
     display: flex;
@@ -103,6 +106,7 @@ height: 90px;
     
     
     
+    
 
 }
 
@@ -123,10 +127,13 @@ input#calcular{
 }
 
 
-p.error {
-    color:red;
-    margin-left: 364px;
-    margin-top: -15px;
+.error {
+    color:rgb(196, 0, 0);
+    display:flex;
+    justify-content: right;
+    margin-top: -10px;
+    padding-bottom: 10px;
+    
 }
 
 label {

@@ -48,11 +48,11 @@ def compra():
                 form.moneda_from_h.data = form.moneda_from.data
                 form.moneda_to_h.data = form.moneda_to.data
                 cantidad_convertida = llamada_api.obtener_cantidad_to(form.cantidad_from.data)
-                form.cantidad_convertida.data = cantidad_convertida
-                form.cantidad_convertida_h.data = cantidad_convertida
+                form.cantidad_convertida.data = round(cantidad_convertida,9)
+                form.cantidad_convertida_h.data = round(cantidad_convertida,9)
                 pu = float(form.cantidad_from.data) / cantidad_convertida
-                form.pu.data = pu
-                form.pu_h.data = pu
+                form.pu.data = round(pu,9)
+                form.pu_h.data = round(pu,9)
                 
                 form.cantidad_from.render_kw ={'readonly':True}
                 form.moneda_from.render_kw = {'disabled': True}

@@ -4,7 +4,7 @@ from config import API_KEY, HEADERS, RUTA_BBDD, URL_CONSULTA
 from errors import APIError
 from datetime import datetime
 
-now = datetime.now()
+
 
 
 def convertir_en_dict(param):
@@ -100,9 +100,11 @@ class ConsultasSql():
         
 
     def fecha_actual(self):
+        now = datetime.now()
         return str(now.date())
 
     def hora_actual(self):
+        now = datetime.now()
         return str(now.time())
 
     def total_euros_invertidos(self):

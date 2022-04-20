@@ -29,7 +29,7 @@ class ComprasForm(FlaskForm):
     moneda_to = SelectField('A', choices= MONEDAS,validators=[DataRequired(),validar_moneda],widget=Select())
     moneda_to_h = HiddenField()
     
-    cantidad_from = FloatField("Cantidad",validators=[DataRequired(message="Aquí mensaje error"),validar_cantidad_from,
+    cantidad_from = FloatField("Cantidad",validators=[DataRequired(message="La cantidad debe ser un número"),validar_cantidad_from,
                     NumberRange(min=0.00001,max = 99999999,message = "La cantidad debe ser un número positivo")])
                     
     cantidad_convertida =  FloatField("Cantidad")
