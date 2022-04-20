@@ -27,7 +27,7 @@
             <td>{{movimiento[4]}}</td>
             <td>{{movimiento[5]}}</td>
             <td>{{"{:,.5f}".format(movimiento[6])}}</td>
-            <td>{{"{:,.2f}".format(movimiento[4]/movimiento[6])}}</td>
+            <td>{{"{:,.5f}".format(movimiento[4]/movimiento[6])}}</td>
             
         </tr>
         {% endfor %}
@@ -40,6 +40,8 @@
     
     <div class="container">
         <a href="/estado" role="button" class="outline">Estado</a>
-        <a href="/compra" role="button" class="outline">+</a>
+        
+        <a href="/compra" role="button" class="boton-mas"></a>
+        
     </div>  
 {% endblock %}

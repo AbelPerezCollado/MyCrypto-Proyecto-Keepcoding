@@ -41,6 +41,14 @@ def puedo_comprar_esta_moneda(moneda,cantidad,dic):
     else:
         return True
 
+def estadoinversion(invertido,actual):
+    if actual > invertido:
+        return 'color:green'    
+    else:
+        return 'color:red'
+                
+
+
 class ValorCriptoMonedas():
     def __init__(self,origen="",destino="") -> None:
         self.origen = origen

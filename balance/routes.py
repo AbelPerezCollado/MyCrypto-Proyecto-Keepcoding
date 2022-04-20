@@ -1,8 +1,9 @@
 import sqlite3
 from tkinter import DISABLED
+from turtle import color
 from flask import redirect, render_template, flash,request, url_for
 from balance import app
-from balance.models import ConsultasSql, ValorCriptoMonedas, convertir_en_dict, obtiene_euros_decriptos, obtienevalor_criptos_actual, puedo_comprar_esta_moneda
+from balance.models import ConsultasSql, ValorCriptoMonedas, convertir_en_dict, estadoinversion, obtiene_euros_decriptos, obtienevalor_criptos_actual, puedo_comprar_esta_moneda
 from errors import APIError
 from formularios import ComprasForm, EstadoForm
 
@@ -103,10 +104,13 @@ def estado():
         cantidad_actual_cripto = obtienevalor_criptos_actual(dict_criptos_to,dict_criptos_from)
         valor_euros_decriptos = obtiene_euros_decriptos(cantidad_actual_cripto)
         form.valor_actual.data = round((total_euros_invertidos + saldo_euros_invertidos + valor_euros_decriptos),2)
+        color = estadoinversion(form.invertido.data,form.valor_actual.data)
+        form.valor_actual.render_kw = {'style':color}  
 
     else:
         form.invertido.data = 0.00
-        form.valor_actual.data = 0.00        
+        form.valor_actual.data = 0.00
+             
 
     return render_template("estado.html",clase_estado = "disabled-link",formulario = form)
 

@@ -66,10 +66,22 @@ div.movimiento {
     text-decoration: underline;
 }
 
+
+
 .cantidad-from-error {
     color: red;
     display: flex;
     margin-left:200px;
+}
+
+/*BOTON COMPRAR MAS */
+.boton-mas {
+    background-color: transparent;
+    width: 60px;
+    background-image: url('../css/img/+.png') ;
+    background-size:75%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 div.container {
@@ -102,11 +114,6 @@ height: 90px;
     height: 60px;
     border-radius: 5px;
     padding: 10px;
-    
-    
-    
-    
-    
 
 }
 
@@ -120,7 +127,7 @@ div.boton-calcular {
 
 input#calcular{
     background-image: url('../css/img/calc.png') ;
-    background-size: contain;
+    background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
 
@@ -155,16 +162,33 @@ p.pu_label {
 
 input#comprar {
     height: 60px;
-    width: 115px;
-    background-image: url('../css/img/buy.png') ;
-    background-size: contain;
+    width: 76px;
+    background-image: url('../css/img/check.png') ;
+    background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
     
 }
 
+
 a.secondary {
     height: 60px;
+    width: 76px;
+    
+    background-image: url('../css/img/cancel.png') ;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+a.contrast {
+    height: 60px;
+    width: 76px;
+    background-image: url('../css/img/delete\ copia.png') ;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    
 }
 
 
