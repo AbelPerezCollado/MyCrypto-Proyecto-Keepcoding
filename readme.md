@@ -1,9 +1,10 @@
-#mYCRYPTO 💳
+# mYCRYPTO 💳
 Aplicación web con la cual podrás simular el registro de inversiones y compra/venta de Criptomonedas y controlar el estado de nuestra inversión.
-##Demo 🖥
+
+## Demo 🖥
 Si quieres ver una demo del proyecto, puedes pinchar aquí: [Demo del proyecto](https://prueba.com/)
 
-##Instalación ⚙️
+## Instalación ⚙️
 Para un correcto funcionamiento de la app, sigue los siguientes pasos:
 
 * **1. Clonar repositorio**: 
@@ -52,7 +53,7 @@ Para un correcto funcionamiento de la app, sigue los siguientes pasos:
 	
 	``` HEADERS = {'X-CoinAPI-Key' : 'tu apikey aquí'} ```  											 
  
-##Ejecutar aplicación 🚀
+## Ejecutar aplicación 🚀
 Escribir en la terminal ``` flask run ```  
 ## Tecnologia empleada 🛠️
 
