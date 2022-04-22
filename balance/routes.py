@@ -1,6 +1,4 @@
 import sqlite3
-from tkinter import DISABLED
-from turtle import color
 from flask import redirect, render_template, flash,request, url_for
 from balance import app
 from balance.models import ConsultasSql, ValorCriptoMonedas, convertir_en_dict, estadoinversion, obtiene_euros_decriptos, obtienevalor_criptos_actual, puedo_comprar_esta_moneda
@@ -45,7 +43,8 @@ def compra():
                 todas_las_monedas_compradas =convertir_en_dict(db.criptos_to())
                 if not puedo_comprar_esta_moneda(form.moneda_from.data,form.cantidad_from.data,todas_las_monedas_compradas):
                     flash(f"No tienes suficientes {form.moneda_from.data}.")
-                    return render_template("compra.html",clase_compra = "disabled-link",formulario = form) 
+                    return render_template("compra.html",clase_compra = "disabled-link",formulario = form)
+
                 form.moneda_from_h.data = form.moneda_from.data
                 form.moneda_to_h.data = form.moneda_to.data
                 cantidad_convertida = llamada_api.obtener_cantidad_to(form.cantidad_from.data)
@@ -102,7 +101,13 @@ def estado():
         dict_criptos_to = convertir_en_dict(db.criptos_to())
         dict_criptos_from = convertir_en_dict(db.criptos_from())
         cantidad_actual_cripto = obtienevalor_criptos_actual(dict_criptos_to,dict_criptos_from)
-        valor_euros_decriptos = obtiene_euros_decriptos(cantidad_actual_cripto)
+        try:
+            valor_euros_decriptos = obtiene_euros_decriptos(cantidad_actual_cripto)
+        
+        except APIError as err:
+            flash(err)
+            return render_template("estado.html",clase_compra = "disabled-link",formulario = form )  
+
         form.valor_actual.data = round((total_euros_invertidos + saldo_euros_invertidos + valor_euros_decriptos),2)
         color = estadoinversion(form.invertido.data,form.valor_actual.data)
         form.valor_actual.render_kw = {'style':color}  

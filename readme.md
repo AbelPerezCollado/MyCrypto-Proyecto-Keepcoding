@@ -49,7 +49,7 @@ Para un correcto funcionamiento de la app, sigue los siguientes pasos:
 	
 	```	SECRET_KEY = "tu SECRET KEY"``` (puedes usar [RandomKeygen](https://randomkeygen.com/))
 	
-	```API_KEY = "tu api key aquí"```
+	
 	
 	``` HEADERS = {'X-CoinAPI-Key' : 'tu apikey aquí'} ```  											 
  
@@ -66,6 +66,6 @@ Escribir en la terminal ``` flask run ```
 * [AWS](https://aws.amazon.com/es/) - Amazon Web Services
 
 
-## Desarrollador ⌨️
+## Creador ⌨️
 
-* **Abel Pérez** | [GitHub](https://github.com/AbelPerezCollado)  	[mail](iabel83@gmail.com)
+* **Abel Pérez** | [GitHub](https://github.com/AbelPerezCollado)  	
