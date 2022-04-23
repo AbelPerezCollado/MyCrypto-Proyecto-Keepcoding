@@ -1,197 +1,223 @@
-:root {
-    --primary: #1095c1;
-    --color-primario: #1095c1;
-    --color-secundario: #f7dba7;
-    --negro: #2c363f; 
-    --blanco: #fafafa;
-    --separacion-defecto: 8px;
+
     
-}
+  
 
-header, footer {
-    padding: calc(2 * var(--separacion-defecto));
-    font-size: 24px;
-    background-color: var(--color-primario);
-    color: var(--negro);
-    margin-top: var(--separacion-defecto);
-    height: 150px;
-}
-footer {
-    width: calc(100% - 50px); 
-    font-size: small;
-    bottom: var(--separacion-defecto);
-}
-.error-msgs {
-    border: 1px solid red;
-    background-color: #f7dba7;
-    padding: calc(2 * var(--separacion-defecto));
-    background-color: var(--color-secundario);
+    :root {
+        --primary: #1095c1;
+        --color-primario: #1095c1;
+        --color-secundario: #f7dba7;
+        --negro: #2c363f; 
+        --blanco: #fafafa;
+        --separacion-defecto: 8px;
+        
+    }
+
+    header, footer {
+        padding: calc(2 * var(--separacion-defecto));
+        font-size: 24px;
+        background-color: var(--color-primario);
+        color: var(--negro);
+        margin-top: var(--separacion-defecto);
+        height: 150px;
+    }
+    footer {
+        width: calc(100% - 50px); 
+        font-size: small;
+        bottom: var(--separacion-defecto);
+    }
+    .error-msgs {
+        border: 1px solid red;
+        background-color: #f7dba7;
+        padding: calc(2 * var(--separacion-defecto));
+        background-color: var(--color-secundario);
+        
+        
+        
+    }
+
+    .error-msgs li {
+        background-color: #f7dba7;
+        padding: calc(2 * var(--separacion-defecto));
+        background-color: var(--color-secundario);
+        color: red;
+        
+        
+    }
+
+
+
+    .boton {
+        text-align: right;
+    }
+
+    nav {
+        color:#1095c1
+    }
+
+    div.movimientos-cabecera {
+        text-align: center;
+    }
+    div.compra-cabecera {
+        text-align: center;
+    }
+    div.movimiento {
+        text-align: center;
+    }
+
+
+    .disabled-link {
+        pointer-events: none;
+        text-decoration: underline;
+    }
+
+
+
+
+
     
-    
-    
-}
-
-.error-msgs li {
-    background-color: #f7dba7;
-    padding: calc(2 * var(--separacion-defecto));
-    background-color: var(--color-secundario);
-    color: red;
-    
-    
-}
 
 
 
-.boton {
-    text-align: right;
-}
+    .cantidad-from-error {
+        color: red;
+        display: flex;
+        margin-left:200px;
+        
+    }
 
-nav {
-    color:#1095c1
-}
+   
 
-div.movimientos-cabecera {
-    text-align: center;
-}
-div.compra-cabecera {
-    text-align: center;
-}
-div.movimiento {
-    text-align: center;
-}
+    .boton-mas {
+        background-color: transparent;
+        width: 60px;
+        background-image: url('../css/img/+.png') ;
+        background-size:75%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
 
-
-.disabled-link {
-    pointer-events: none;
-    text-decoration: underline;
-}
-
-
-
-.cantidad-from-error {
-    color: red;
+    div.container {
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    .container-pu {
     display: flex;
-    margin-left:200px;
-}
-
-
-.boton-mas {
-    background-color: transparent;
-    width: 60px;
-    background-image: url('../css/img/+.png') ;
-    background-size:75%;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-div.container {
-    display: flex;
-    justify-content: space-between;
-    
-}
-.container-pu {
-display: flex;
-justify-content: end;
-gap: 15px;
-height: 90px;
-
-
-}
-.pu {
-    color: #1095c1;
-    border: 1px solid #1095c1;
-    border-radius: 5px;
-    height: 60px;
-    width: 215px;
-    text-align: center;
-    padding: 10px;
-}
-
-.cantidad-convertida {
-    color: #1095c1;
-    text-align: center;
-    border: 1px solid #1095c1;
-    height: 60px;
-    border-radius: 5px;
-    padding: 10px;
-
-}
-
-div.boton-volver {
-    text-align: right;
-}
-
-div.boton-calcular {
-    width: 95px;
-}
-
-input#calcular{
-    background-image: url('../css/img/calc.png') ;
-    background-size: 50%;
-    background-repeat: no-repeat;
-    background-position: center;
-
-}
-
-
-.error {
-    color:rgb(196, 0, 0);
-    display:flex;
-    justify-content: right;
-    margin-top: -10px;
-    padding-bottom: 10px;
-    
-}
-
-label {
-    text-align: center;
-}
-
-p.pu_label {
-    text-align: center;
-}
-
-
-.boton-cancelar-comprar {
-    display:flex;
-    text-align: right;
-    height: 60px;
     justify-content: end;
-    gap: 10px;
-}
+    gap: 15px;
+    height: 82px;
 
-input#comprar {
-    height: 60px;
-    width: 76px;
-    background-image: url('../css/img/check.png') ;
-    background-size: 70%;
-    background-repeat: no-repeat;
-    background-position: center;
+
+
+    }
+    .pu {
+        color: #1095c1;
+        border: 1px solid #1095c1;
+        border-radius: 5px;
+        height: 60px;
+        
+        text-align: center;
+        padding: 10px;
+    }
+
+    .cantidad-convertida {
+        color: #1095c1;
+        text-align: center;
+        border: 1px solid #1095c1;
+        height: 60px;
+        
+        border-radius: 5px;
+        padding: 10px;
+        
+
+    }
+
+    div.boton-volver {
+        text-align: right;
+    }
+
+    div.boton-calcular {
+        width: 95px;
+        align-self: center;
+        
+        
+    }
+
+    input#calcular{
+        height: 50px;
+        width: 60px;
+        background-image: url('../css/img/calc.png') ;
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-top: 5px;
+
+    }
+
+
+    .error {
+        color:rgb(196, 0, 0);
+        display:flex;
+        justify-content: right;
+        margin-top: -10px;
+        padding-bottom: 10px;
+        
+        
+    }
+
+    label {
+        text-align: center;
+    }
+
+
+
+
+    .boton-cancelar-comprar {
+        display:flex;
+        text-align: right;
+        height: 60px;
+        justify-content: end;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    input#comprar {
+        height: 50px;
+        width: 76px;
+        background-image: url('../css/img/check.png') ;
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background-position: center;
+        
+    }
+
+
+    a.secondary {
+        height: 50px;
+        width: 76px;
+        
+        background-image: url('../css/img/cancel.png') ;
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    a.contrast {
+        height: 50px;
+        width: 76px;
+        background-image: url('../css/img/delete\ copia.png') ;
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background-position: center;
+        
+    }
+
+
+
     
-}
-
-
-a.secondary {
-    height: 60px;
-    width: 76px;
+      
+        
     
-    background-image: url('../css/img/cancel.png') ;
-    background-size: 70%;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-a.contrast {
-    height: 60px;
-    width: 76px;
-    background-image: url('../css/img/delete\ copia.png') ;
-    background-size: 70%;
-    background-repeat: no-repeat;
-    background-position: center;
-    
-}
-
-
 
 
 

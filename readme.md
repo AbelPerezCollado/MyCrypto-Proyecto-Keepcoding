@@ -2,7 +2,7 @@
 Aplicación web con la cual podrás simular el registro de inversiones y compra/venta de Criptomonedas y controlar el estado de nuestra inversión.
 
 ## Demo 🖥
-Si quieres ver una demo del proyecto, puedes pinchar aquí: [Demo del proyecto](https://prueba.com/)
+Si quieres ver una demo del proyecto, puedes pinchar aquí: [Demo del proyecto](http://127.0.0.1:5000/)
 
 ## Instalación ⚙️
 Para un correcto funcionamiento de la app, sigue los siguientes pasos:
@@ -66,6 +66,6 @@ Escribir en la terminal ``` flask run ```
 * [AWS](https://aws.amazon.com/es/) - Amazon Web Services
 
 
-## Creador ⌨️
+## Desarrollador ⌨️
 
 * **Abel Pérez** | [GitHub](https://github.com/AbelPerezCollado)  	
