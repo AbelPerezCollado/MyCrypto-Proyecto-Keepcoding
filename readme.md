@@ -2,7 +2,7 @@
 Aplicación web con la cual podrás simular el registro de inversiones y compra/venta de Criptomonedas y controlar el estado de nuestra inversión.
 
 ## Demo 🖥
-Si quieres ver una demo del proyecto, puedes pinchar aquí: [Demo del proyecto](http://127.0.0.1:5000/)
+Si quieres ver una demo del proyecto, puedes solicitar un enlace en la siguiente dirección de correo electrónico: iabel83@gmail.com
 
 ## Instalación ⚙️
 Para un correcto funcionamiento de la app, sigue los siguientes pasos:

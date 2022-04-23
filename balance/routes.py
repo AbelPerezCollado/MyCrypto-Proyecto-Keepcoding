@@ -43,8 +43,16 @@ def compra():
                 todas_las_monedas_compradas =convertir_en_dict(db.criptos_to())
                 if not puedo_comprar_esta_moneda(form.moneda_from.data,form.cantidad_from.data,todas_las_monedas_compradas):
                     flash(f"No tienes suficientes {form.moneda_from.data}.")
+                    form.comprar.render_kw = {'disabled': True}
                     return render_template("compra.html",clase_compra = "disabled-link",formulario = form)
 
+            except sqlite3.Error as e:
+                 
+                flash("Error de conexión de BBDD, inténtelo más tarde")
+                form.comprar.render_kw = {'disabled': True}
+                return render_template("compra.html",clase_compra = "disabled-link",formulario = form )          
+
+            try:
                 form.moneda_from_h.data = form.moneda_from.data
                 form.moneda_to_h.data = form.moneda_to.data
                 cantidad_convertida = llamada_api.obtener_cantidad_to(form.cantidad_from.data)
@@ -61,6 +69,7 @@ def compra():
                 return render_template("compra.html",clase_compra = "disabled-link",formulario = form)
             except APIError as err:
                 flash(err)
+                form.comprar.render_kw = {'disabled': True}
                 return render_template("compra.html",clase_compra = "disabled-link",formulario = form )
 
         elif form.comprar.data:
@@ -84,7 +93,7 @@ def compra():
             else:
                 return render_template("compra.html",clase_compra = "disabled-link",formulario = form)                   
         else:
-            
+            form.comprar.render_kw = {'disabled': True}
             return render_template("compra.html",clase_compra = "disabled-link",formulario = form)            
 
 
@@ -92,8 +101,12 @@ def compra():
 @app.route("/estado")
 def estado():
     form = EstadoForm()
-    
-    total_euros_invertidos = db.total_euros_invertidos()
+    try:
+        total_euros_invertidos = db.total_euros_invertidos()
+    except sqlite3.Error as e:
+        flash("Error de conexión de BBDD, inténtelo más tarde")
+        return render_template("estado.html",clase_estado = "disabled-link",formulario = form )
+                  
     if total_euros_invertidos:
             
         form.invertido.data = round(total_euros_invertidos,2)
@@ -106,7 +119,7 @@ def estado():
         
         except APIError as err:
             flash(err)
-            return render_template("estado.html",clase_compra = "disabled-link",formulario = form )  
+            return render_template("estado.html",clase_estado = "disabled-link",formulario = form )  
 
         form.valor_actual.data = round((total_euros_invertidos + saldo_euros_invertidos + valor_euros_decriptos),2)
         color = estadoinversion(form.invertido.data,form.valor_actual.data)

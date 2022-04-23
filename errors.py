@@ -8,8 +8,8 @@ class APIError(Exception):
         elif code == 403:
             msg = "No tienes suficientes privilegios para realizar la consulta."
         elif code == 429:
-            msg = "Has excedido el número de consultas para tu API KEY. Pónganse en contacto en www.coinapi.io."
+            msg = "Has excedido el número de consultas para tu API KEY. Póngase en contacto en www.coinapi.io."
         elif code == 550:
-            msg = "No hay información para la consulta realizada. Inténtelo más tarde."                                                
+            msg = "No hay información para la consulta realizada.Revise la configuración e inténtelo más tarde."                                                
         super().__init__(msg)
           
